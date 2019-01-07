@@ -148,15 +148,15 @@ gitflow_contains() {
 }
 
 gitflow_fail() {
-	echo "\t"${CROSS} ${GREY}$1${WHITE}
+	echo "\t${CROSS} ${GREY}$1${WHITE}"
 }
 
 gitflow_ok() {
-	echo "\t"${CHECK} ${GREY}$1${WHITE}
+	echo -e "\t${CHECK} ${GREY}$1${WHITE}"
 }
 
 h1() {
-	echo "\n${WHITE}$1 ...\n"
+	echo -e "\n${WHITE} $1 ...\n"
 }
 
 # Function to get a list of files that will be committed by extension
