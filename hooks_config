@@ -2,7 +2,16 @@ MAINFILE=Changes.mdown
 
 _update_version() {
         #Update the version number
-        sed -i 's/^GITFLOW_VERSION=.*/GITFLOW_VERSION='$1'/' $ROOTDIR/git-flow-version
-        sed -i '0,/####.*/s/^####.*/#### '$1'/' $ROOTDIR/Changes.mdown
-	sed -i 's/"version": ".*"/"version": "'$1'"/' $ROOTDIR/composer.json
+        if [[ -e $ROOTDIR/git-flow-version ]]; then
+            sed -i 's/^GITFLOW_VERSION=.*/GITFLOW_VERSION='$1'/' $ROOTDIR/git-flow-version;
+        fi;
+        if [[ -e $ROOTDIR/Changes.mdown ]]; then
+            sed -i '0,/####.*/s/^####.*/#### '$1'/' $ROOTDIR/Changes.mdown;
+        fi;
+        if [[ -e $ROOTDIR/composer.json ]]; then
+            sed -i 's/"version": ".*"/"version": "'$1'"/' $ROOTDIR/composer.json;
+        fi;
+        if [[ -e $ROOTDIR/index.php ]]; then
+            sed -i 's/"\([A-Z]\)\+_VERSION",\s*".*"/\1_VERSION", "'$1'"/' $ROOTDIR/index.php;
+        fi;
 }
