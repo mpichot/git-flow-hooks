@@ -14,4 +14,10 @@ _update_version() {
         if [[ -e $ROOTDIR/index.php ]]; then
             sed -i 's/"\([A-Z]\)\+_VERSION",\s*".*"/\1_VERSION", "'$1'"/' $ROOTDIR/index.php;
         fi;
+        if [[ -e $ROOTDIR/.env ]]; then
+            sed -i 's/\([A-Z]\+\)_VERSION=".*"/\1_VERSION="'$1'"/' $ROOTDIR/.env;
+        fi;
+        if [[ -e $ROOTDIR/.env.example ]]; then
+            sed -i 's/\([A-Z]\+\)_VERSION=".*"/\1_VERSION="'$1'"/' $ROOTDIR/.env.example;
+        fi;
 }
